@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rdo.curso.springboot.webapp.springboot_web.models.User;
+import com.rdo.curso.springboot.webapp.springboot_web.models.UserModel;
+import com.rdo.curso.springboot.webapp.springboot_web.modelsDTO.UserDTO;
 
 // Se seguirá el patron MVC
 
@@ -31,15 +32,25 @@ public class UserRestController {
         // Ejemplo obteniendo los datos del package Model (implementando patrón MVC)
     @GetMapping("/detailsFromModel")
     public Map<String, Object> detailsFromModel() {
-
-        User user = new User("Lucía", "Díaz Durán");
-        User user2 = new User("Darío", "Díaz Durán");
+        UserModel user = new UserModel("Lucía", "Díaz Durán");
+        UserModel user2 = new UserModel("Darío", "Díaz Durán");
 
         Map<String, Object> body = new HashMap<>();
         body.put("user", user);
         body.put("user2", user2);
         
         return body;
+    }
+
+    @GetMapping("/detalisFromModelUserDto")
+    public UserDTO detailsFromUModelUserDto() {
+        UserDTO userDto = new UserDTO();
+        UserModel user = new UserModel("Roberto", "Díaz");
+
+        userDto.setTitle("Datos Usuario");
+        userDto.setUserModel(user);
+
+        return userDto;
     }
 
 }   // end class UserRestController

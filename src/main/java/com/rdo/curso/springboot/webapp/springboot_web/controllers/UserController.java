@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.rdo.curso.springboot.webapp.springboot_web.models.User;
+import com.rdo.curso.springboot.webapp.springboot_web.models.UserModel;
 
 // Se seguirá el patron MVC
 
@@ -17,10 +17,10 @@ public class UserController {
     public String details(Model model) {        
                         //    key           value
         model.addAttribute("title", "Hello World from Controller");
-        User user = new User("Juana", "Oriol Salvador");
+        UserModel user = new UserModel("Juana", "Oriol Salvador");
         model.addAttribute("user", user); 
 
-        return "details";   // retturn debe contener exactamente el mismo nombre que el fichero al que apunta, la vista (details.html)
+        return "details";   // return debe contener exactamente el mismo nombre que el fichero de la vista al que apunta (details.html)
     }
 
         // Alternativa al método anterior para enviar datos a la vista
