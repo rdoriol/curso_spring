@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+</head>
+<body>
+      <h2 th:text="${title}"></h2>
+      <div th:if="${users.size() == 0}" th:text="'No tiene elemento usuarios'"></div>
+    <ul>
+        <li></li>
+    </ul>
+</body>
+</html>

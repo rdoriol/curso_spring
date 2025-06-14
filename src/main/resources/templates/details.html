@@ -9,10 +9,12 @@
 <body>
     <h1 th:text="${title}"></h1>
     <table>
-        <th>Name</th><th>Lastname</th>
+        <th>Name</th><th>Lastname</th><th>Email</th>
         <tr>
             <td th:text="${user.name}"></td>
             <td th:text="${user.lastname}"></td>
+            <td th:if="${user.email != null}" th:text="${user.email}"></td>
+            <td th:if="${user.email == null}" th:text="${'Sin email'}"></td>
         </tr>
     </table>
 </body>
