@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.rdo.curso.springboot.webapp.springboot_web.models.UserModel;
 
@@ -37,12 +38,13 @@ public class UserController {
         return "details****";   // retturn debe contener exactamente el mismo nombre que el fichero al que apunta, la vista (details.html)
     }
 
-    @GetMapping("/list")
+        // Para implementar listados que puedan venir de cualquier fuente de datos (ejem. del modelo provenientes de una bbdd, etc)
+    /*@GetMapping("/list")
     public String listUsers(ModelMap model) {
-        UserModel user = new UserModel("Darío", "Díaz", null);
+        UserModel user = new UserModel("Darío", "Díaz");
         UserModel user2 = new UserModel("Lucía", "Díaz", "ldiadur2805@e.educaand.es");
         UserModel user3 = new UserModel("Sandra", "Durán", "sandra.duranolivencia@gmail.com");
-        UserModel user4 = new UserModel("Darío", "Díaz", "rdoriol@gmail.com");
+        UserModel user4 = new UserModel("Roberto", "Díaz", "rdoriol@gmail.com");
 
         List<UserModel> listUsers = Arrays.asList(user, user2, user3, user4);
 
@@ -50,5 +52,26 @@ public class UserController {
         model.addAttribute("title", "Users List");
 
         return "list";
+    }*/
+
+        // Ejemplo para almacenar datos en un componente y que puedan ser reutilizados en cualquier parte de la aplicación
+    @ModelAttribute("users")    // Se accede desde la vista pasando como objeto "users"
+    public List<UserModel> storeUsersList() {
+        List<UserModel> listUsers = Arrays.asList(
+            new UserModel("Roberto", "Díaz"),
+            new UserModel("Sandra", "Durán", "s.durano@gm.com"));
+
+            return listUsers;
+   }
+        // Para utilizar el método anterior storeUsersList()
+    @GetMapping("/list")
+    public String listUsersModelAttribute(ModelMap model) {
+        model.addAttribute("title", "User List from @ModelAttribute");
+
+        return "list";
     }
+
+
+
+
 }  // end class UserController
